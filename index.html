@@ -14,10 +14,51 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background:
+                linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80' opacity='0.03'%3E%3Cpath d='M40,20 C30,10 15,15 15,30 C15,45 25,50 30,50 C25,55 15,60 15,70 C15,80 30,75 40,65 C50,75 65,80 65,70 C65,60 55,55 50,50 C55,50 65,45 65,30 C65,15 50,10 40,20 Z M35,35 C38,35 40,37 40,40 C40,43 38,45 35,45 C32,45 30,43 30,40 C30,37 32,35 35,35 Z' fill='%23000000'/%3E%3C/svg%3E");
+            background-size: cover, 200px 200px, 100px 100px;
             min-height: 100vh;
             padding: 20px;
             color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Аккуратные котики на заднем плане */
+        .cat-decoration {
+            position: absolute;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cat-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 8rem;
+            transform: rotate(-15deg);
+        }
+
+        .cat-2 {
+            bottom: 15%;
+            right: 7%;
+            font-size: 6rem;
+            transform: rotate(20deg);
+        }
+
+        .cat-3 {
+            top: 20%;
+            right: 10%;
+            font-size: 4rem;
+        }
+
+        .cat-4 {
+            bottom: 25%;
+            left: 8%;
+            font-size: 5rem;
+            transform: rotate(10deg);
         }
 
         .container {
@@ -28,6 +69,9 @@
             padding: 30px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         header {
@@ -122,11 +166,24 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             border: 1px solid #e2e8f0;
             transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .counter-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .counter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 15px 15px 0 0;
         }
 
         .counter-title {
@@ -145,28 +202,39 @@
             color: #4c51bf;
             margin-bottom: 20px;
             text-align: center;
+            transition: all 0.3s ease;
         }
 
         .counter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
         }
 
         .counter-btn {
-            padding: 8px 15px;
+            padding: 10px 5px;
             border: none;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .counter-btn-subtract {
+            background: #f7fafc;
+            color: #718096;
+            border: 1px solid #e2e8f0;
+        }
+
+        .counter-btn-subtract:hover {
+            background: #e2e8f0;
+            color: #4a5568;
         }
 
         .counter-btn-add {
             background: #c6f6d5;
             color: #22543d;
-            flex: 1;
         }
 
         .counter-btn-add:hover {
@@ -194,6 +262,8 @@
         .counter-btn-reset {
             background: #fed7e2;
             color: #702459;
+            grid-column: span 4;
+            margin-top: 5px;
         }
 
         .counter-btn-reset:hover {
@@ -206,6 +276,7 @@
             padding: 30px;
             margin-top: 40px;
             border: 1px solid #e2e8f0;
+            position: relative;
         }
 
         .report-title {
@@ -256,6 +327,24 @@
             }
         }
 
+        .value-change {
+            animation: valueChange 0.5s ease;
+        }
+
+        @keyframes valueChange {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .cat-icon {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            color: rgba(102, 126, 234, 0.1);
+            font-size: 1.5rem;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -268,10 +357,33 @@
             h1 {
                 font-size: 2rem;
             }
+            
+            .counter-buttons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .counter-btn {
+                padding: 8px 3px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Аккуратные котики на заднем плане -->
+    <div class="cat-decoration cat-1">
+        <i class="fas fa-cat"></i>
+    </div>
+    <div class="cat-decoration cat-2">
+        <i class="fas fa-cat"></i>
+    </div>
+    <div class="cat-decoration cat-3">
+        <i class="fas fa-paw"></i>
+    </div>
+    <div class="cat-decoration cat-4">
+        <i class="fas fa-paw"></i>
+    </div>
+
     <div class="container">
         <header>
             <h1><i class="fas fa-envelope"></i> Счётчик обработанных писем</h1>
@@ -280,7 +392,7 @@
 
         <div class="controls">
             <button class="btn btn-primary" onclick="generateReport()">
-                <i class="fas fa-clipboard"></i> Сформировать отчёт
+                <i class="fas fa-chart-bar"></i> Сформировать отчёт
             </button>
             <button class="btn btn-success" onclick="copyToClipboard()">
                 <i class="fas fa-copy"></i> Скопировать отчёт
@@ -295,7 +407,7 @@
         </div>
 
         <div class="report-section">
-            <h2 class="report-title"><i class="fas fa-chart-bar"></i> Отчёт за день</h2>
+            <h2 class="report-title"><i class="fas fa-clipboard-list"></i> Отчёт за день</h2>
             <div id="reportOutput"></div>
             <button class="btn btn-primary" onclick="copyToClipboard()" style="width: 100%;">
                 <i class="fas fa-copy"></i> Копировать отчёт в буфер обмена
@@ -303,9 +415,7 @@
         </div>
     </div>
 
-    <div class="notification" id="notification">
-        Отчёт скопирован в буфер обмена!
-    </div>
+    <div class="notification" id="notification"></div>
 
     <script>
         // Типы писем и их иконки
@@ -363,6 +473,9 @@
                     </div>
                     <div class="counter-value" id="value-${type.id}">${counters[type.id]}</div>
                     <div class="counter-buttons">
+                        <button class="counter-btn counter-btn-subtract" onclick="subtractFromCounter('${type.id}', 1)" ${counters[type.id] === 0 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+                            -1
+                        </button>
                         <button class="counter-btn counter-btn-add" onclick="addToCounter('${type.id}', 1)">
                             +1
                         </button>
@@ -373,8 +486,11 @@
                             +5
                         </button>
                         <button class="counter-btn counter-btn-reset" onclick="resetCounter('${type.id}')">
-                            <i class="fas fa-redo"></i>
+                            <i class="fas fa-redo"></i> Сбросить
                         </button>
+                    </div>
+                    <div class="cat-icon">
+                        <i class="fas fa-paw"></i>
                     </div>
                 `;
                 
@@ -404,6 +520,17 @@
             showNotification(`Добавлено ${amount} к "${emailTypes.find(t => t.id === typeId).name}"`);
         }
 
+        // Вычитание из счётчика (новая функция)
+        function subtractFromCounter(typeId, amount) {
+            if (counters[typeId] > 0) {
+                counters[typeId] = Math.max(0, counters[typeId] - amount);
+                updateCounterDisplay(typeId);
+                saveCounters();
+                generateReport();
+                showNotification(`Убрано ${amount} из "${emailTypes.find(t => t.id === typeId).name}"`);
+            }
+        }
+
         // Сброс одного счётчика
         function resetCounter(typeId) {
             if (confirm(`Сбросить счётчик "${emailTypes.find(t => t.id === typeId).name}"?`)) {
@@ -411,6 +538,7 @@
                 updateCounterDisplay(typeId);
                 saveCounters();
                 generateReport();
+                showNotification(`Счётчик "${emailTypes.find(t => t.id === typeId).name}" сброшен`);
             }
         }
 
@@ -420,10 +548,24 @@
             if (element) {
                 element.textContent = counters[typeId];
                 // Анимация изменения
-                element.style.transform = 'scale(1.2)';
+                element.classList.add('value-change');
                 setTimeout(() => {
-                    element.style.transform = 'scale(1)';
-                }, 300);
+                    element.classList.remove('value-change');
+                }, 500);
+                
+                // Обновляем состояние кнопки "-1"
+                const subtractBtn = element.parentElement.querySelector('.counter-btn-subtract');
+                if (subtractBtn) {
+                    if (counters[typeId] === 0) {
+                        subtractBtn.disabled = true;
+                        subtractBtn.style.opacity = '0.5';
+                        subtractBtn.style.cursor = 'not-allowed';
+                    } else {
+                        subtractBtn.disabled = false;
+                        subtractBtn.style.opacity = '';
+                        subtractBtn.style.cursor = '';
+                    }
+                }
             }
         }
 
@@ -431,28 +573,31 @@
         function generateReport() {
             const reportOutput = document.getElementById('reportOutput');
             let report = '';
+            let total = 0;
             
             emailTypes.forEach(type => {
                 if (counters[type.id] > 0) {
                     report += `${type.name}: ${counters[type.id]}\n`;
+                    total += counters[type.id];
                 }
             });
             
             // Если все счётчики на нуле
             if (!report) {
                 report = 'Писем за сегодня пока не обработано';
+            } else {
+                report += `\n────────────────\nВсего писем: ${total}`;
             }
             
             reportOutput.textContent = report;
         }
-
-        // Копирование отчёта в буфер обмена
+// Копирование отчёта в буфер обмена
         function copyToClipboard() {
             const reportOutput = document.getElementById('reportOutput');
             const text = reportOutput.textContent;
             
             navigator.clipboard.writeText(text).then(() => {
-                showNotification('Отчёт скопирован в буфер обмена!');
+                showNotification('📋 Отчёт скопирован в буфер обмена!');
             }).catch(err => {
                 // Fallback для старых браузеров
                 const textArea = document.createElement('textarea');
@@ -461,7 +606,7 @@
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                showNotification('Отчёт скопирован в буфер обмена!');
+                showNotification('📋 Отчёт скопирован в буфер обмена!');
             });
         }
 
@@ -473,7 +618,7 @@
                 });
                 saveCounters();
                 initUI();
-                showNotification('Все счётчики сброшены');
+                showNotification('🔄 Все счётчики сброшены на ноль');
             }
         }
 
@@ -498,7 +643,34 @@
             
             // Сохранение каждые 30 секунд на всякий случай
             setInterval(saveCounters, 30000);
+            
+            // Добавляем случайных котиков при загрузке
+            addRandomCats();
         });
+
+        // Функция для добавления случайных котиков на фон
+        function addRandomCats() {
+            const catIcons = ['fa-cat', 'fa-paw', 'fa-heart', 'fa-star'];
+            const container = document.querySelector('.container');
+            
+            // Добавляем несколько случайных котиков в контейнер
+            for (let i = 0; i < 3; i++) {
+                const cat = document.createElement('div');
+                cat.className = 'cat-decoration';
+                cat.style.left = `${10 + Math.random() * 80}%`;
+                cat.style.top = `${10 + Math.random() * 80}%`;
+                cat.style.fontSize = `${2 + Math.random() * 4}rem`;
+                cat.style.opacity = 0.02 + Math.random() * 0.03;
+                cat.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                const icon = document.createElement('i');
+                icon.className = `fas ${catIcons[Math.floor(Math.random() * catIcons.length)]}`;
+                cat.appendChild(icon);
+                
+                document.body.appendChild(cat);
+            }
+        }
     </script>
 </body>
 </html>
+
